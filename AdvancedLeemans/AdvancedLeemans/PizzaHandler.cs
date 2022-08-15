@@ -39,16 +39,11 @@ namespace AdvancedLeemans
             var count = repo.GetAll().Count;
             Console.WriteLine($"{count} {entityType}{(count == 1 ? "" : "s")}:");
 
-            //for (int i = 0; i < count; i++)
-            //{
-            //    Console.WriteLine($"   {repo.Items[i]}");
-            //}
-
-            var allPizzas = repo.Items.OrderBy(p => p.ItemName);    //order by pizza name
-            //var allPizzas = repo.Items.OrderBy(p => p.Price);    //order by pizza price
-            foreach (var pizza in allPizzas)
+            var allItems = repo.Items.OrderBy(p => p.ItemName);    //order by name
+            //var allItems = repo.Items.OrderBy(p => p.Price);    //order by price
+            foreach (var item in allItems)
             {
-                Console.WriteLine($"   {pizza}");
+                Console.WriteLine($"   {item}");
             }
 
             Console.WriteLine($"-----");
@@ -75,10 +70,13 @@ namespace AdvancedLeemans
             var count = repo.GetAll().Count;
             Console.WriteLine($"{count} {entityType}{(count == 1 ? "" : "s")}:");
 
-            for (int i = 0; i < count; i++)
+            var allItems = repo.Items.OrderBy(p => p.ItemName);    //order by name
+            //var allItems = repo.Items.OrderBy(p => p.Price);    //order by price
+            foreach (var item in allItems)
             {
-                Console.WriteLine($"   {repo.Items[i]}");
+                Console.WriteLine($"   {item}");
             }
+
             Console.WriteLine($"-----");
         }
 
@@ -103,10 +101,13 @@ namespace AdvancedLeemans
             var count = repo.GetAll().Count;
             Console.WriteLine($"{count} {entityType}{(count == 1 ? "" : "s")}:");
 
-            for (int i = 0; i < count; i++)
+            var allItems = repo.Items.OrderBy(p => p.ItemName);    //order by name
+            //var allItems = repo.Items.OrderBy(p => p.Price);    //order by price
+            foreach (var item in allItems)
             {
-                Console.WriteLine($"   {repo.Items[i]}");
+                Console.WriteLine($"   {item}");
             }
+
             Console.WriteLine($"-----");
         }
 
