@@ -1,4 +1,5 @@
 ﻿using AdvancedLeemans.Entities.Base;
+using System.ComponentModel;
 
 namespace AdvancedLeemans.Entities
 {
@@ -7,6 +8,7 @@ namespace AdvancedLeemans.Entities
         /// <summary>
         /// Centiliter
         /// </summary>
+        [Description("centiliter")]
         public int Cl { get; set; }
 
         public override string ToString()

@@ -1,5 +1,6 @@
 ﻿using AdvancedLeemans.DAL;
 using AdvancedLeemans.Entities;
+using System.ComponentModel;
 
 namespace AdvancedLeemans
 {
@@ -9,15 +10,23 @@ namespace AdvancedLeemans
         private PizzaRepository _pizzaRepository = new();
         private WrapRepository _wrapRepository = new();
 
+        private static string GetDescription(Type t, string propertyName)
+        {
+            var property = t.GetProperty(propertyName);
+            var attribute = property.GetCustomAttributes(typeof(DescriptionAttribute), true)[0];
+            var description = (DescriptionAttribute)attribute;
+            return description.Description;
+        }
+
         public void AddPizza()
         {
             var pizza = _pizzaRepository.Add(
                 new Pizza {
-                    ItemName = AskString(nameof(Pizza.ItemName)),
-                    Price = AskDecimal(nameof(Pizza.Price)),
-                    MeatType = AskMeatType(nameof(Pizza.MeatType)),
-                    Toppings = AskString(nameof(Pizza.Toppings))
-                    }
+                    ItemName = AskString(GetDescription(typeof(Pizza), nameof(Pizza.ItemName))),
+                    Price = AskDecimal(GetDescription(typeof(Pizza), nameof(Pizza.Price))),
+                    MeatType = AskMeatType(GetDescription(typeof(Pizza), nameof(Pizza.MeatType))),
+                    Toppings = AskString(GetDescription(typeof(Pizza), nameof(Pizza.Toppings)))
+                }
                 );
 
             Console.WriteLine($"New {nameof(Pizza)} => {pizza}");
@@ -49,11 +58,11 @@ namespace AdvancedLeemans
         {
             var wrap = _wrapRepository.Add(
                 new Wrap {
-                    ItemName = AskString(nameof(Wrap.ItemName)),
-                    Price = AskDecimal(nameof(Wrap.Price)),
-                    MeatType = AskMeatType(nameof(Wrap.MeatType)),
-                    Sauce = AskString(nameof(Wrap.Sauce))
-                    }
+                    ItemName = AskString(GetDescription(typeof(Wrap), nameof(Wrap.ItemName))),
+                    Price = AskDecimal(GetDescription(typeof(Wrap), nameof(Wrap.Price))),
+                    MeatType = AskMeatType(GetDescription(typeof(Wrap), nameof(Wrap.MeatType))),
+                    Sauce = AskString(GetDescription(typeof(Wrap), nameof(Wrap.Sauce)))
+                }
                 );
 
             Console.WriteLine($"New {nameof(Wrap)} => {wrap}");
@@ -78,9 +87,9 @@ namespace AdvancedLeemans
             var wrap = _drinkRepository.Add(
                 new Drink
                 {
-                    ItemName = AskString(nameof(Drink.ItemName)),
-                    Price = AskDecimal(nameof(Drink.Price)),
-                    Cl = AskInteger(nameof(Drink.Cl))
+                    ItemName = AskString(GetDescription(typeof(Drink), nameof(Drink.ItemName))),
+                    Price = AskDecimal(GetDescription(typeof(Drink), nameof(Drink.Price))),
+                    Cl = AskInteger(GetDescription(typeof(Drink), nameof(Drink.Cl)))
                 }
                 );
 
